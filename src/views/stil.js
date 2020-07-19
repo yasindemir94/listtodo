@@ -18,6 +18,9 @@ export const anasayfaS = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  AK: {
+    flexDirection: 'row',
+  },
 
   logoK: {
     position: 'absolute',
@@ -40,6 +43,7 @@ export const anasayfaS = StyleSheet.create({
     paddingRight: W(3),
     color: temaH.renkler.r2,
   },
+
   notlarK: {
     marginTop: H(1),
     marginBottom: H(1),
@@ -49,5 +53,31 @@ export const anasayfaS = StyleSheet.create({
     marginTop: H(0.8),
     marginBottom: H(0.8),
     padding: W(2),
+  },
+  notAciklamaY: {
+    fontWeight: 'bold',
+    color: temaH.renkler.r2,
+    flex: 1,
+    paddingLeft: W(3),
+    textAlignVertical: 'center',
+  },
+  notResim: {borderRadius: 3},
+  notResimCoklu: {
+    borderRadius: 3,
+    marginRight: 10,
+  },
+  notButonlarK: {
+    borderBottomWidth: 0,
+    position: 'absolute',
+    bottom: -10,
+    right: 10,
+    borderRadius: 3,
+    backgroundColor: temaH.renkler.r1,
+    flexDirection: 'row',
+    paddingBottom: 3,
+  },
+  notIkon: {
+    marginLeft: 3,
+    marginRight: 3,
   },
 });
