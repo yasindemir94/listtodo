@@ -1,5 +1,4 @@
 import React from 'react';
-import {View, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Anasayfa from './Anasayfa';
@@ -18,7 +17,11 @@ class App extends React.Component {
   }
 
   render() {
-    return <>{this.navigasyon()}</>;
+    return (
+      <>
+        <>{this.navigasyon()}</>
+      </>
+    );
   }
 }
 export default App;
