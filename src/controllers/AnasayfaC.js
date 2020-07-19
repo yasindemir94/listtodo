@@ -16,7 +16,11 @@ class AnasayfaC {
   };
   cWUnmount = () => {};
 
+  notButonlarKH = 0;
+
   splashAktif = true;
+
+  set = (k, v) => (this[k] = v);
 }
 
 decorate(AnasayfaC, {
@@ -24,7 +28,11 @@ decorate(AnasayfaC, {
   cDUpdate: action,
   cWUnmount: action,
 
+  notButonlarKH: observable,
+
   splashAktif: observable,
+
+  set: action,
 });
 
 export default new AnasayfaC();

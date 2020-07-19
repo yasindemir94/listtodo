@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, Text, StatusBar} from 'react-native';
+import {View, Text, StatusBar, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import {observer} from 'mobx-react';
+import {View as ViewA} from 'react-native-animatable';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import C from '../controllers/AnasayfaC';
 
@@ -28,7 +30,11 @@ class Anasayfa extends React.Component {
 
   notlar() {
     return (
-      <View style={(S.notlarK, {display: C.splashAktif ? 'none' : 'flex'})}>
+      <View
+        style={(
+          S.notlarK,
+          //{ display: C.splashAktif ? 'none' : 'flex' }
+        )}>
         {this.not()}
         {this.not()}
         {this.not()}
@@ -38,10 +44,47 @@ class Anasayfa extends React.Component {
   }
 
   not() {
+
+    const resimler = [
+            'https://fujifilm-x.com/wp-content/uploads/2019/08/x-t3_sample-images02.jpg',
+            'https://fujifilm-x.com/wp-content/uploads/2019/08/x-t3_sample-images02.jpg',
+            'https://fujifilm-x.com/wp-content/uploads/2019/08/x-t3_sample-images02.jpg',
+            'https://fujifilm-x.com/wp-content/uploads/2019/08/x-t3_sample-images02.jpg',
+        ];
+
+    const tekResim = resimler.length === 1;
+
     return (
-      <View style={S.notK}>
-        <Text>NOT</Text>
-      </View>
+      <ViewA animation={'bounceInRight'} delay={250} style={[S.notK, /*{ paddingBottom: C.notButonlarKH }*/]}>
+        
+        <View>
+            <Resim
+                    style={S.notResim}
+                    source={{ uri: resimler[0] }}
+            />
+            
+            <Text style={S.notAciklamaY}>Lorem ipsum dolar sit amet Lorem ipsum dolar sit amet Lorem ipsum dolar sit amet Lorem</Text>
+        </View>
+        
+            <View
+                    style={S.notButonlarK}
+                //onLayout={d => C.notButonlarKH === 0 && C.set('notButonlarKH', d.nativeEvent.layout.height / 2.2)}
+                >
+                    <TouchableOpacity style={S.notIkon} onPress={() => alert('test')} activeOpacity={0.2}>
+                        <AntDesign name={'delete'} color={temaH.renkler.r2} size={tlfnH.W(5.5)} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={S.notIkon}>
+                        <AntDesign name={'delete'} color={temaH.renkler.r2} size={tlfnH.W(5.5)} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={S.notIkon}>
+                        <AntDesign name={'delete'} color={temaH.renkler.r2} size={tlfnH.W(5.5)} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={S.notIkon}>
+                        <AntDesign name={'delete'} color={temaH.renkler.r2} size={tlfnH.W(5.5)} />
+                    </TouchableOpacity>
+                </View>
+            
+      </ViewA>
     );
   }
 
@@ -66,7 +109,7 @@ class Anasayfa extends React.Component {
 
         {this.ustBolge()}
 
-        {this.notlar()}
+        {!C.splashAktif && this.notlar()}
 
         {this.splash()}
       </View>
