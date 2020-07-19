@@ -1,16 +1,18 @@
 import {StyleSheet} from 'react-native';
 import telefonH from '../helper/telefonH';
+import temaH from '../helper/temaH';
 
 //K:container
 //AK:subcontainer
 //B:button
 //BY:buttontext
 
+const W = telefonH.W;
+const H = telefonH.H;
+
 export const anasayfaS = StyleSheet.create({
   K: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: 'red',
   },
   K2: {
     justifyContent: 'center',
@@ -19,13 +21,33 @@ export const anasayfaS = StyleSheet.create({
 
   logoK: {
     position: 'absolute',
-    left: telefonH.W(2),
-    top: telefonH.H(2),
+    left: W(4),
+    top: H(2),
   },
 
   ustBolgeK: {
-    borderWidth: 1,
-    height: 100,
-    width: telefonH.w,
+    paddingLeft: W(20) + H(2),
+    minHeight: W(20) + H(4),
+    justifyContent: 'center',
+    backgroundColor: temaH.renkler.r1,
+    //margin: W(2),
+    //borderRadius: W(2),
+  },
+  bilgiY: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    textAlign: 'right',
+    paddingRight: W(3),
+    color: temaH.renkler.r2,
+  },
+  notlarK: {
+    marginTop: H(1),
+    marginBottom: H(1),
+  },
+  notK: {
+    backgroundColor: temaH.renkler.r1,
+    marginTop: H(0.8),
+    marginBottom: H(0.8),
+    padding: W(2),
   },
 });
