@@ -2,8 +2,12 @@ import {observable, decorate, action} from 'mobx';
 import {LayoutAnimation} from 'react-native';
 
 class AnasayfaC {
-  cDMount = () => {
+  cDMount = async () => {
     setTimeout(() => (this.splashAktif = false), 1000);
+
+    console.log('bir');
+    await this.Bekle(1500);
+    console.log('iki');
   };
   cDUpdate = () => {
     LayoutAnimation.configureNext(
@@ -15,6 +19,11 @@ class AnasayfaC {
     );
   };
   cWUnmount = () => {};
+
+  Bekle = (delay = 1000) =>
+    new Promise((resolve) => {
+      setTimeout(() => resolve('ticari bekleme yapma'), delay);
+    });
 
   notButonlarKH = 0;
 
