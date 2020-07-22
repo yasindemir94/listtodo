@@ -4,7 +4,7 @@ import {observer} from 'mobx-react';
 import {View as ViewA} from 'react-native-animatable';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import C from '../../controllers/anasayfa/notlarC';
+import C from '../../controllers/anasayfa/NotlarC';
 
 import Resim from '../Components/Resim';
 

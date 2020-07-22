@@ -17,7 +17,7 @@ class UstBolge extends React.Component {
   render() {
     return (
       <View
-        style={[S.ustBolgeK, {display: splashC.splashAktif ? 'none' : 'flex'}]}>
+        style={[S.ustBolgeK, {display: SplashC.splashAktif ? 'none' : 'flex'}]}>
         <Text style={S.bilgiY}>Lorem ipsum dolar sit</Text>
         <Text style={S.bilgiY}>Lorem ipsum</Text>
         <Text style={S.bilgiY}>Lorem ipsum dolar sit amet</Text>
