@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react';
 
-import C from '../controllers/splashC';
+import C from '../controllers/SplashC';
 
 import Resim from './Components/Resim';
 
