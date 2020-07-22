@@ -1,30 +1,28 @@
-import {observable, decorate, action} from 'mobx';
-import {LayoutAnimation} from 'react-native';
+import { observable, action, decorate } from 'mobx';
+import { LayoutAnimation } from 'react-native';
 
-class AnasayfaC {
-  cDMount = async () => {};
-  cDUpdate = () => {
-    LayoutAnimation.configureNext(
-      LayoutAnimation.create(
-        1000,
-        LayoutAnimation.Types.easeInEaseOut,
-        LayoutAnimation.Properties.scaleXY,
-      ),
-    );
-  };
-  cWUnmount = () => {};
+class anasayfaC {
+    cDMount = () => { //AÇILIŞTAN HEMEN SONRA
+    }
+    cDUpdate = () => { //UPDATE'DEN HEMEN SONRA
+        LayoutAnimation.easeInEaseOut();
+    }
+    cWUnmount = () => { //KAPANIŞTAN HEMEN NÖCE
 
-  set = (k, v) => (this[k] = v);
+    }
+
+    set = (k, v) => this[k] = v;
 }
 
-decorate(AnasayfaC, {
-  cDMount: action,
-  cDUpdate: action,
-  cWUnmount: action,
+decorate(
+    anasayfaC,
+    {
+        cDMount: action,
+        cDUpdate: action,
+        cWUnmount: action,
+        set: action,
+    }
+);
 
-  splashAktif: observable,
 
-  set: action,
-});
-
-export default new AnasayfaC();
+export default new anasayfaC();

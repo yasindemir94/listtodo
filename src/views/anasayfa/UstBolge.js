@@ -1,29 +1,27 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {observer} from 'mobx-react';
+import { View, Text } from 'react-native';
+import { observer } from 'mobx-react';
 
-import C from '../../controllers/anasayfa/UstBolgeC';
+import C from '../../controllers/anasayfa/ustBolgeC';
 
-import {anasayfaS as S} from '../stil';
-import SplashC from '../../controllers/SplashC';
+import { anasayfaUstBolgeS as S } from '../stil';
 
-//const Abc = observer(FlatList);
 
 class UstBolge extends React.Component {
-  componentDidMount = C.cDMount;
-  componentDidUpdate = C.cDUpdate;
-  componentWillUnmount = C.cWUnmount;
+    componentDidMount = C.cDMount;
+    componentDidUpdate = C.cDUpdate;
+    componentWillUnmount = C.cWUnmount;
 
-  render() {
-    return (
-      <View
-        style={[S.ustBolgeK, {display: SplashC.splashAktif ? 'none' : 'flex'}]}>
-        <Text style={S.bilgiY}>Lorem ipsum dolar sit</Text>
-        <Text style={S.bilgiY}>Lorem ipsum</Text>
-        <Text style={S.bilgiY}>Lorem ipsum dolar sit amet</Text>
-      </View>
-    );
-  }
+
+    render() {
+        return (
+            <View style={S.K}>
+                <Text style={S.ustAlanY}>lorem ipsum dolar sit amet</Text>
+                <Text style={S.ustAlanY}>lorem ipsum dolar</Text>
+                <Text style={S.ustAlanY}>lorem ipsum dolar sit</Text>
+            </View>
+        );
+    }
 }
 
 export default observer(UstBolge);

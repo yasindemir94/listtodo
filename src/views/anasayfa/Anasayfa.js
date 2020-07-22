@@ -1,42 +1,46 @@
 import React from 'react';
-import {View, Text, StatusBar, TouchableOpacity, FlatList} from 'react-native';
-import {observer} from 'mobx-react';
-import {View as ViewA} from 'react-native-animatable';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import { View } from 'react-native';
+import { observer } from 'mobx-react';
 
-import C from '../../controllers/anasayfa/AnasayfaC';
+import Arkaplan from '../../components/Arkaplan';
 
-import Resim from '../Components/Resim';
+import C from '../../controllers/anasayfa/anasayfaC';
+import splashC from '../../controllers/splashC';
 
-import telefonH from '../../helper/telefonH';
+import { anasayfaS as S } from '../stil';
 
-import {anasayfaS as S} from '../stil';
-import temaH from '../../helper/temaH';
-import Splash from '../Splash';
+
 import UstBolge from './UstBolge';
 import Notlar from './Notlar';
+import Splash from '../Splash';
+
 
 class Anasayfa extends React.Component {
-  componentDidMount = C.cDMount;
-  componentDidUpdate = C.cDUpdate;
-  componentWillUnmount = C.cWUnmount;
+    componentDidMount = C.cDMount;
+    componentDidUpdate = C.cDUpdate;
+    componentWillUnmount = C.cWUnmount;
 
-  render() {
-    return (
-      <View style={[S.K, C.splashAktif && S.K2]}>
-        <StatusBar
-          backgroundColor={C.splashAktif ? 'transparent' : temaH.renkler.r1}
-          barStyle={'dark-content'}
-        />
 
-        <UstBolge />
+    render() {
+        const durum = splashC.durum;
 
-        {!C.splashAktif && <Notlar />}
+        return (
+            <View style={[S.K, durum && S.K2]}>
+                <Arkaplan source={require('../../../assets/back2.jpg')} opacity={durum === 0 ? 0 : 0.8} />
 
-        <Splash />
-      </View>
-    );
-  }
+                {
+                    durum === 3 &&
+                    <>
+                        <UstBolge />
+                        <Notlar />
+                    </>
+                }
+
+
+                <Splash />
+            </View>
+        );
+    }
 }
 
 export default observer(Anasayfa);

@@ -1,18 +1,36 @@
-import {observable, action, decorate} from 'mobx';
-import {LayoutAnimation} from 'react-native';
+import { observable, action, decorate } from 'mobx';
+import { LayoutAnimation } from 'react-native';
 
 class notlarC {
-  cDMount = async () => {};
-  cDUpdate = () => {
-    LayoutAnimation.easeInEaseOut();
-  };
-  cWUnmount = () => {};
+    cDMount = () => { }
+    cDUpdate = () => { LayoutAnimation.easeInEaseOut(); }
+    cWUnmount = () => { }
 
-  set = (k, v) => (this[k] = v);
+
+
+    notButonlarAcik = -1; //butonların aktif olduüu notun indeksi (diğer indeksli notlar butonlar pasif)
+    setNotButonlarAcik = i => {
+        this.notButonlarAcik = this.notButonlarAcik === i ? -1 : i;
+    }
+
+
+    set = (k, v) => this[k] = v;
 }
 
-decorate(notlarC, {
-  set: action,
-});
+decorate(
+    notlarC,
+    {
+        cDMount: action,
+        cDUpdate: action,
+        cWUnmount: action,
+
+        notButonlarAcik: observable,
+        setNotButonlarAcik: action,
+
+
+        set: action,
+    }
+);
+
 
 export default new notlarC();

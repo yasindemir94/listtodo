@@ -1,31 +1,32 @@
-import {observable, action, decorate} from 'mobx';
-import {LayoutAnimation} from 'react-native';
+import { observable, action, decorate } from 'mobx';
+import { LayoutAnimation } from 'react-native';
 
 class splashC {
-  cDMount = () => {
-    //AÇILIŞTAN HEMEN SONRA
-    setTimeout(() => (this.splashAktif = false), 2000);
-  };
-  cDUpdate = () => {
-    //UPDATE'DEN HEMEN SONRA
-    LayoutAnimation.easeInEaseOut();
-  };
-  cWUnmount = () => {
-    //KAPANIŞTAN HEMEN NÖCE
-  };
-  splashAktif = true; //true: splash göster, false: asnasayfa goster
+    cDMount = () => {
+        setTimeout(() => this.durum = 3, 2000);
+    }
+    cDUpdate = () => { LayoutAnimation.easeInEaseOut(); }
+    cWUnmount = () => { }
 
-  set = (k, v) => (this[k] = v);
+
+    durum = 0; //0: splash, 1: oturumaç, 2: üyeol, 3:anasayfa
+
+
+    set = (k, v) => this[k] = v;
 }
 
-decorate(splashC, {
-  cDMount: action,
-  cDUpdate: action,
-  cWUnmount: action,
+decorate(
+    splashC,
+    {
+        cDMount: action,
+        cDUpdate: action,
+        cWUnmount: action,
 
-  splashAktif: observable,
+        durum: observable,
 
-  set: action,
-});
+        set: action,
+    }
+);
+
 
 export default new splashC();
