@@ -1,27 +1,27 @@
 import {StyleSheet} from 'react-native';
-import telefonH from '../helper/telefonH';
+import tlfnH from '../helper/tlfnH';
 import temaH from '../helper/temaH';
 
-//K:container
-//AK:subcontainer
-//B:button
-//BY:buttontext
+//K  : container
+//AK : subContainer
+//B  : button
+//BY : buttonText
 
-const W = telefonH.W;
-const H = telefonH.H;
+const W = tlfnH.W;
+const H = tlfnH.H;
+const R = temaH.renkler;
 
 export const anasayfaS = StyleSheet.create({
   K: {
     flex: 1,
+    backgroundColor: 'white',
   },
   K2: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  AK: {
-    flexDirection: 'row',
-  },
 });
+
 export const splashS = StyleSheet.create({
   K: {
     //splash ekranı container
