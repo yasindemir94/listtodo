@@ -4,7 +4,7 @@
 
 import {AppRegistry, UIManager, Platform} from 'react-native';
 import App from './src/views/App';
-import telefonH from './src/helper/telefonH';
+import telefonH from './src/helper/tlfnH';
 
 if (telefonH.and) UIManager.setLayoutAnimationEnabledExperimental(true);
 
