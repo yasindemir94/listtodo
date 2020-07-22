@@ -90,7 +90,7 @@ class Anasayfa extends React.Component {
           extraData={notlar}
           renderItem={(d) => this.not(d.item, d.index)}
           //initialNumToRender={30}
-          //keyExtractor={(d, i) => (i.toString())}
+          //keyExtractor={(d, i) => i.toString()}
           //initialScrollIndex={5}
           //ItemSeparatorComponent={() => <View style={{ backgroundColor: 'black', width: '75%', height: 2, alignSelf: 'center' }} />}
         />
@@ -103,10 +103,10 @@ class Anasayfa extends React.Component {
 
     return (
       <ViewA
-        animation={'bounceInRight'}
-        delay={250}
+        //animation={'bounceInRight'}
+        //delay={250}
         //key={i}
-        style={[S.notK /*{ paddingBottom: C.notButonlarKH }*/]}>
+        style={[S.notK, {backgroundColor: temaH.notRenkleri[d.renk]}]}>
         <View style={S.AK}>
           <Resim
             style={S.notResim}
