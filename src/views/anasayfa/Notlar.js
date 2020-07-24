@@ -76,6 +76,9 @@ class Notlar extends React.Component {
     notRenkSec(d, i) {
         const butonlarAcik = C.notButonlarAcik === i;
 
+        const nr = temaH.notRenkleri;
+        const nrDizi = Object.keys(nr)
+
         return (
             <View
                 style={[
@@ -87,17 +90,11 @@ class Notlar extends React.Component {
                     }
                 ]}
             >
-                <ScrollView /* KAYDIRILABİLİR VİEW */
-                    horizontal //YATAY MOD AKTİF (horizontal={true} true değerler için sadece props ismini yazmak yeterli)
+                <ScrollView
+                    horizontal
                     showsHorizontalScrollIndicator={false}
                 >
-                    <TouchableOpacity style={[S.notRenk, { backgroundColor: 'blue' }]} />
-                    <TouchableOpacity style={[S.notRenk, { backgroundColor: 'red' }]} />
-                    <TouchableOpacity style={[S.notRenk, { backgroundColor: 'yellow' }]} />
-                    <TouchableOpacity style={[S.notRenk, { backgroundColor: 'pink' }]} />
-                    <TouchableOpacity style={[S.notRenk, { backgroundColor: 'blue' }]} />
-                    <TouchableOpacity style={[S.notRenk, { backgroundColor: 'red' }]} />
-                    <TouchableOpacity style={[S.notRenk, { backgroundColor: 'yellow' }]} />
+                    {nrDizi.map(x => d.renk === x ? null : <TouchableOpacity style={[S.notRenk, { backgroundColor: nr[x] }]} />)}
                 </ScrollView>
             </View>
         );
