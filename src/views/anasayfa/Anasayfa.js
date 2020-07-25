@@ -36,7 +36,6 @@ class Anasayfa extends React.Component {
                     </>
                 }
 
-
                 <Splash />
             </View>
         );

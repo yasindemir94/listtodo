@@ -1,15 +1,16 @@
 import { observable, action, decorate } from 'mobx';
 import fbH from '../helper/fbH';
+import oturumC from '../controllers/oturumC';
 
 
 class uyelikM {
     uyeOl = async () => {
-        const ka = 'gungorn@outlook.com'; //controller dan çekilecek
-        const sifre = '12345678';
+        const kullanicigiris = oturumC.kullanicigiris.indexOf('@') === -1 ? `${oturumC.kullanicigiris}@todolist.com` : oturumC.kullanicigiris;
+        const sifre = oturumC.sifre;
 
         try {
-            const sonuc = await fbH.uyeOl(ka, sifre);
-            console.log(sonuc)
+            const sonuc = await fbH.uyeOl(kullanicigiris, sifre);
+            console.log(sonuc);
 
             return true;
         }

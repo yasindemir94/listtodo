@@ -34,6 +34,10 @@ export const splashS = StyleSheet.create({
 		left: W(2),
 		top: H(2)
 	},
+	K3: {
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+	}
 });
 
 export const anasayfaNotS = StyleSheet.create({
@@ -116,4 +120,30 @@ export const anasayfaUstBolgeS = StyleSheet.create({
 		color: R.r2,
 		textAlign: 'right'
 	},
+});
+
+
+export const oturumS = StyleSheet.create({
+	K: {
+		width: W(100),
+		marginTop: 25,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+
+	input: {
+		width: W(75),
+	},
+	buton: {
+		width: W(65)
+	},
+	butonKlavyeAcik: {
+		width: W(100)
+	},
+	uyeOlButon: {
+		marginTop: '20%',
+	},
+	uyeOlButonY: {
+		textDecorationLine: 'underline'
+	}
 });

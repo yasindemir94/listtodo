@@ -10,6 +10,13 @@ class tlfnH {
     H = d => this.h * d / 100;
 
 
+    klavye = { durum: false, h: 0 };
+    klavyeAcildi = d => this.klavye = { durum: true, h: d.endCoordinates.height };
+    klavyeKapandi = d => this.klavye = { durum: false, h: 0 };
+
+
+    sleep = (d = 1000) => new Promise(resolve => setTimeout(() => resolve(), d));
+
 
     android = Platform.OS === 'android';
     ios = Platform.OS === 'ios';
@@ -23,6 +30,14 @@ decorate(
 
         W: action,
         H: action,
+
+
+        klavye: observable,
+        klavyeAcildi: action,
+        klavyeKapandi: action,
+
+
+        sleep: action,
 
         android: observable,
         ios: observable,
