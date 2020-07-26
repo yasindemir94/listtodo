@@ -1,41 +1,55 @@
 import { observable, action, decorate } from 'mobx';
 import fbH from '../helper/fbH';
 import oturumC from '../controllers/oturumC';
+import splashC from '../controllers/splashC';
 
 
 class uyelikM {
+    uid = '';
+
+    isim = '';
+    kullaniciGiris = '';
+
+
     uyeOl = async () => {
-        const kullanicigiris = oturumC.kullanicigiris.indexOf('@') === -1 ? `${oturumC.kullanicigiris}@todolist.com` : oturumC.kullanicigiris;
+        const kullaniciGiris = oturumC.kullaniciGiris.indexOf('@') === -1 ? `${oturumC.kullaniciGiris}@todolist.com` : oturumC.kullaniciGiris;
         const sifre = oturumC.sifre;
 
         try {
-            const sonuc = await fbH.uyeOl(kullanicigiris, sifre);
-            console.log(sonuc);
+            const sonuc = await fbH.uyeOl(kullaniciGiris, sifre);
+            this.uid = sonuc.user.uid;
 
-            return true;
-        }
-        catch (e) {
-            console.log(e);
+            const veri = {
+                isim: oturumC.isim,
+                kullaniciGiris: oturumC.kullaniciGiris,
+                nick: oturumC.kullaniciGiris.split('@')[0],
+                sifre: oturumC.sifre,
+            };
+            await fbH.guncelleKullaniciBilgi(this.uid, veri);
 
-            return false;
+            oturumC.uyelikKapat();
+            return { sonuc: true };
         }
+        catch (e) { return { sonuc: false, hata: e }; }
     }
 
 
     oturumAc = async () => {
-        const ka = 'gungorn@outlook.com'; //controller dan çekilecek
-        const sifre = '12345678';
+        const kullaniciGiris = oturumC.kullaniciGiris.indexOf('@') === -1 ? `${oturumC.kullaniciGiris}@todolist.com` : oturumC.kullaniciGiris;
+        const sifre = oturumC.sifre;
 
         try {
-            const sonuc = await fbH.oturumAc(ka, sifre);
-            console.log(sonuc);
+            const sonuc = await fbH.oturumAc(kullaniciGiris, sifre);
+            this.uid = sonuc.user.uid;
 
-            return true;
+            const kullaniciBilgiler = await fbH.getirKullaniciBilgi(this.uid);
+            this.isim = kullaniciBilgiler.isim;
+            this.kullaniciGiris = kullaniciBilgiler.kullaniciGiris;
+
+            return { sonuc: true };
         }
         catch (e) {
-            console.log(e);
-
-            return false;
+            return { sonuc: false, hata: e };
         }
     }
 }

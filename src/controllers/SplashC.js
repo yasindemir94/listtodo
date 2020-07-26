@@ -17,7 +17,9 @@ class splashC {
         //const sonuc = await uyelikM.oturumAc();
         //console.log(sonuc);
     }
-    cDUpdate = () => { LayoutAnimation.easeInEaseOut(); }
+    cDUpdate = () => {
+        //LayoutAnimation.easeInEaseOut();
+    }
     cWUnmount = () => { }
 
 

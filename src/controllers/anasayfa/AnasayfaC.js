@@ -5,7 +5,7 @@ class anasayfaC {
     cDMount = () => { //AÇILIŞTAN HEMEN SONRA
     }
     cDUpdate = () => { //UPDATE'DEN HEMEN SONRA
-        LayoutAnimation.easeInEaseOut();
+        //LayoutAnimation.easeInEaseOut();
     }
     cWUnmount = () => { //KAPANIŞTAN HEMEN NÖCE
 

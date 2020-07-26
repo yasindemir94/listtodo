@@ -38,8 +38,9 @@ class Oturum extends React.Component {
                         placeholder={'Kullanıcı adı veya E-Posta'}
                         leftIcon={<Ikon is={'MaterialCommunityIcons'} i={'account'} c={'black'} />}
                         containerStyle={S.input}
-                        value={C.kullanicigiris}
-                        onChangeText={d => C.set('kullanicigiris', d)}
+                        value={C.kullaniciGiris}
+                        keyboardType={'email-address'}
+                        onChangeText={d => C.set('kullaniciGiris', d)}
                         maxLength={60}
                     />
 

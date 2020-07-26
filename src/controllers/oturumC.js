@@ -3,16 +3,19 @@ import { LayoutAnimation, Alert } from 'react-native';
 import splashC from './splashC';
 import uyelikM from '../models/uyelikM';
 import tlfnH from '../helper/tlfnH';
+import { splashS } from '../views/stil';
 
 class oturumC {
     cDMount = async () => { }
-    cDUpdate = () => { LayoutAnimation.easeInEaseOut(); }
+    cDUpdate = () => {
+        //LayoutAnimation.easeInEaseOut();
+    }
     cWUnmount = () => { }
 
     uyeOlButon = () => { splashC.set('durum', splashC.durum === 1 ? 2 : 1); }
 
 
-    kullanicigiris = '';
+    kullaniciGiris = '';
     isim = '';
     sifre = '';
     sifreTekrar = '';
@@ -34,10 +37,8 @@ class oturumC {
                     'Hata',
                     `Şifrenizi kontrol ediniz.${!eslesme ? ' Girdiğiniz şifreler eşleşmiyor' : ''}${!boyut ? ' Şifreniz 8 karakterli olmalıdır' : ''}`
                 );
-
-                return;
             }
-            await this.uyeOl();
+            else await this.uyeOl();
         }
 
         this.loading = false;
@@ -45,15 +46,35 @@ class oturumC {
     uyeOl = async () => {
         const sonuc = await uyelikM.uyeOl();
 
-        if (sonuc) {
-            alert('OKEY');
-        }
+        if (sonuc.sonuc) { }
         else {
-            alert('HATA');
+            if (sonuc.hata.code === 'auth/email-already-in-use') Alert.alert('Hata', 'Girdiğiniz bilgilerle kayıtlı bir kullanıcı zaten var!');
+            else Alert.alert('Hata', 'Beklenmedik bir hata oluştu. Düzeltilmek üzere loglanmıştır.');
         }
     }
-    oturumAc = () => {
+    oturumAc = async () => {
+        const sonuc = await uyelikM.oturumAc();
 
+        if (sonuc.sonuc) {
+            splashC.set('durum', 3);
+        }
+        else {
+            this.sifre = '';
+            this.sifreTekrar = '';
+
+            if (sonuc.hata.code === 'auth/wrong-password') Alert.alert('Hata', 'Şifrenizi yanlış girdiniz!');
+            else if (sonuc.hata.code === 'auth/too-many-requests') Alert.alert('Hata', 'Çok fazla giriş denemesi yaptınız!');
+            else Alert.alert('Hata', 'Beklenmedik bir hata oluştu. Düzeltilmek üzere loglanmıştır.');
+        }
+    }
+
+
+    uyelikKapat = () => {
+        this.isim = '';
+        this.sifre = '';
+        this.sifreTekrar = '';
+
+        splashC.set('durum', 1);
     }
 
 
@@ -69,7 +90,7 @@ decorate(
 
         uyeOlButon: action,
 
-        kullanicigiris: observable,
+        kullaniciGiris: observable,
         isim: observable,
         sifre: observable,
         sifreTekrar: observable,
@@ -79,6 +100,8 @@ decorate(
         OTURUM: action,
         oturumAc: action,
         uyeOl: action,
+
+        uyelikKapat: action,
 
         set: action,
     }
