@@ -4,6 +4,7 @@ import splashC from './splashC';
 import uyelikM from '../models/uyelikM';
 import tlfnH from '../helper/tlfnH';
 import { splashS } from '../views/stil';
+import strgH from '../helper/strgH';
 
 class oturumC {
     cDMount = async () => { }
@@ -56,16 +57,20 @@ class oturumC {
         const sonuc = await uyelikM.oturumAc();
 
         if (sonuc.sonuc) {
+            strgH.kaydetOturumBilgileri(this.kullaniciGiris, this.sifre, 'acik');
             splashC.set('durum', 3);
         }
         else {
             this.sifre = '';
             this.sifreTekrar = '';
 
+            console.log(sonuc);
             if (sonuc.hata.code === 'auth/wrong-password') Alert.alert('Hata', 'Şifrenizi yanlış girdiniz!');
             else if (sonuc.hata.code === 'auth/too-many-requests') Alert.alert('Hata', 'Çok fazla giriş denemesi yaptınız!');
             else Alert.alert('Hata', 'Beklenmedik bir hata oluştu. Düzeltilmek üzere loglanmıştır.');
         }
+
+        return sonuc.sonuc;
     }
 
 

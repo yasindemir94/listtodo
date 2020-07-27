@@ -2,29 +2,38 @@ import { observable, action, decorate } from 'mobx';
 import { LayoutAnimation, Keyboard } from 'react-native';
 import uyelikM from '../models/uyelikM';
 import tlfnH from '../helper/tlfnH';
+import strgH from '../helper/strgH';
+import oturumC from './oturumC';
 
 class splashC {
     cDMount = async () => {
         Keyboard.addListener('keyboardDidShow', tlfnH.klavyeAcildi);
         Keyboard.addListener('keyboardDidHide', tlfnH.klavyeKapandi);
 
-        setTimeout(() => this.durum = 1, 2000);
 
-        //const x = (a) => { alert(a) }
-        //x('test');
+        const oturumBilgi = await strgH.getirOturumBilgileri();
 
+        let otomatikOturum = false;
 
-        //const sonuc = await uyelikM.oturumAc();
-        //console.log(sonuc);
+        if (oturumBilgi && oturumBilgi.oturumDurumu === 'acik') {
+            oturumC.set('kullaniciGiris', oturumBilgi.kullaniciGiris);
+            oturumC.set('sifre', oturumBilgi.sifre);
+
+            otomatikOturum = await oturumC.oturumAc();
+        }
+
+        if (!otomatikOturum) {
+            setTimeout(() => this.durum = 1, 1000);
+        }
     }
     cDUpdate = () => {
-        //LayoutAnimation.easeInEaseOut();
+        LayoutAnimation.easeInEaseOut();
     }
     cWUnmount = () => { }
 
 
 
-    durum = 1; //0: splash, 1: oturumaç, 2: üyeol, 3:anasayfa
+    durum = 0; //0: splash, 1: oturumaç, 2: üyeol, 3:anasayfa
 
 
     set = (k, v) => this[k] = v;
