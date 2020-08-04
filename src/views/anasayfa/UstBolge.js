@@ -21,7 +21,7 @@ class UstBolge extends React.Component {
 
         return (
             <View style={S.K}>
-                <Text style={S.ustAlanY}>Hoşgeldin {isimA[0]} {L > 1 && isimA[isimA.length - 1][0]}</Text>
+                <Text style={S.ustAlanY}>Hoşgeldin {isimA[0]} {L > 1 && isimA[isimA.length - 1][0] + '.'}</Text>
                 <Text style={S.ustAlanY}>lorem ipsum dolar</Text>
                 <Text style={S.ustAlanY}>lorem ipsum dolar sit</Text>
             </View>
