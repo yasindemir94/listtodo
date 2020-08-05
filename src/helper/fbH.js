@@ -20,6 +20,14 @@ class fbH {
     });
 
 
+    eslestirKAUID = (ka, uid) => new Promise(resolve => {
+        db.ref(`/KA-UID/${ka}`)
+            .set(uid)
+            .then(() => resolve(true))
+            .catch(() => resolve(false));
+    });
+
+
     guncelleKullaniciBilgi = (uid, veri) => new Promise(resolve => {
         if (!uid) { resolve(false); return; }
 
@@ -44,6 +52,7 @@ decorate(
 
         oturumAc: action,
 
+        eslestirKAUID: action,
         guncelleKullaniciBilgi: action,
         getirKullaniciBilgi: action,
     }

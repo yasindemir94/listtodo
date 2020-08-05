@@ -16,8 +16,9 @@ class oturumC {
     uyeOlButon = () => { splashC.set('durum', splashC.durum === 1 ? 2 : 1); }
 
 
-    kullaniciGiris = '';
+    email = '';
     isim = '';
+    kullaniciAdi = '';
     sifre = '';
     sifreTekrar = '';
 
@@ -57,7 +58,7 @@ class oturumC {
         const sonuc = await uyelikM.oturumAc();
 
         if (sonuc.sonuc) {
-            strgH.kaydetOturumBilgileri(this.kullaniciGiris, this.sifre, 'acik');
+            strgH.kaydetOturumBilgileri(this.email, this.sifre, 'acik');
             splashC.set('durum', 3);
         }
         else {
@@ -95,8 +96,9 @@ decorate(
 
         uyeOlButon: action,
 
-        kullaniciGiris: observable,
+        email: observable,
         isim: observable,
+        kullaniciAdi: observable,
         sifre: observable,
         sifreTekrar: observable,
 

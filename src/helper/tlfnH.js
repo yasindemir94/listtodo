@@ -1,5 +1,6 @@
 import { observable, action, decorate } from 'mobx';
 import { Dimensions, Platform } from 'react-native';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 class tlfnH {
     w = Dimensions.get('window').width;
@@ -13,6 +14,10 @@ class tlfnH {
     klavye = { durum: false, h: 0 };
     klavyeAcildi = d => this.klavye = { durum: true, h: d.endCoordinates.height };
     klavyeKapandi = d => this.klavye = { durum: false, h: 0 };
+
+
+    sbh = () => getStatusBarHeight();
+    sbhi = () => getStatusBarHeight(true);
 
 
     sleep = (d = 1000) => new Promise(resolve => setTimeout(() => resolve(), d));
@@ -35,6 +40,10 @@ decorate(
         klavye: observable,
         klavyeAcildi: action,
         klavyeKapandi: action,
+
+
+        sbh: action,
+        sbhi: action,
 
 
         sleep: action,

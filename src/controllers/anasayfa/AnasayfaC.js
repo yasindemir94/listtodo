@@ -11,6 +11,16 @@ class anasayfaC {
 
     }
 
+    notekleModal = false;
+
+    baslik = '';
+    notIcerik = false;
+
+
+    olustur = async () => {
+
+    }
+
     set = (k, v) => this[k] = v;
 }
 
@@ -20,6 +30,13 @@ decorate(
         cDMount: action,
         cDUpdate: action,
         cWUnmount: action,
+
+        notekleModal: observable,
+        baslik: observable,
+        notIcerik: observable,
+
+        olustur: action,
+
         set: action,
     }
 );

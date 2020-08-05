@@ -12,6 +12,36 @@ const H = tlfnH.H;
 const R = temaH.renkler;
 
 
+export const footerS = StyleSheet.create({
+	K: {
+		width: W(100),
+		flexDirection: 'row',
+		alignItems: 'flex-end',
+		justifyContent: 'center'
+	},
+	solK: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-evenly',
+		alignItems: 'center',
+		height: 48,
+		paddingRight: 20,
+		backgroundColor: R.r1,
+	},
+	sagK: {
+		paddingRight: 0,
+		paddingLeft: 20
+	},
+
+	anabutonAK: {
+		backgroundColor: R.r1,
+		borderRadius: 100,
+		position: 'absolute',
+		padding: 10,
+		borderRadius: 100
+	},
+});
+
 export const anasayfaS = StyleSheet.create({
 	K: {
 		flex: 1,
@@ -20,7 +50,62 @@ export const anasayfaS = StyleSheet.create({
 	K2: {
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+
+
+	//#region NOT EKLE
+	notEkleModalK: {
+		padding: 10,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'white',
+		borderColor: R.r1
+	},
+	notEkleModalKapatB: { position: 'absolute', top: 3, right: 5 },
+	modalBaslik: {
+		fontSize: 20,
+		fontWeight: 'bold',
+		color: R.r2
+	},
+	baslikInput: {
+		borderBottomWidth: 1,
+		borderColor: '#00000055',
+		marginBottom: 10,
+		width: '90%',
+	},
+	notInputK: {
+		width: '90%',
+		borderWidth: 1,
+		borderColor: '#00000055'
+	},
+	notInput: {
+		borderRadius: 3,
+		paddingHorizontal: 10,
+		minHeight: H(10),
+		maxHeight: H(15),
+		marginBottom: 3,
+	},
+	butonlarK: {
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+	},
+	buton: {
+		marginRight: 3,
+		marginBottom: 3
+	},
+
+	olusturB: {
+		alignSelf: 'flex-end',
+		marginRight: '5%',
+	},
+	olusturBY: {
+		fontWeight: 'bold',
+		fontSize: 16,
+		color: R.r2,
+		paddingTop: 10,
+		paddingBottom: 5,
 	}
+	//#endregion
 });
 
 export const splashS = StyleSheet.create({

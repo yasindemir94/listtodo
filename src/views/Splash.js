@@ -13,6 +13,7 @@ import splashC from '../controllers/splashC';
 
 
 import { splashS as S } from './stil';
+import oturumC from '../controllers/oturumC';
 
 
 class Splash extends React.Component {
@@ -32,7 +33,6 @@ class Splash extends React.Component {
         else if (durum === 2 && !tlfnH.klavye.durum) logoH = 35;
         else if (durum === 2 && tlfnH.klavye.durum) logoH = 20;
         else if (durum === 3) logoH = 20;
-
 
         return (
             <View style={[S.K, durum === 3 && S.K2, (durum === 1 || durum === 2) && tlfnH.klavye.durum && S.K3]}>

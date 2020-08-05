@@ -16,7 +16,7 @@ class splashC {
         let otomatikOturum = false;
 
         if (oturumBilgi && oturumBilgi.oturumDurumu === 'acik') {
-            oturumC.set('kullaniciGiris', oturumBilgi.kullaniciGiris);
+            oturumC.set('email', oturumBilgi.email);
             oturumC.set('sifre', oturumBilgi.sifre);
 
             otomatikOturum = await oturumC.oturumAc();

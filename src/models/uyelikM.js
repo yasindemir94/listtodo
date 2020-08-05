@@ -8,24 +8,19 @@ class uyelikM {
     uid = '';
 
     isim = '';
-    kullaniciGiris = '';
+    email = '';
 
 
     uyeOl = async () => {
-        const kullaniciGiris = oturumC.kullaniciGiris.indexOf('@') === -1 ? `${oturumC.kullaniciGiris}@todolist.com` : oturumC.kullaniciGiris;
-        const sifre = oturumC.sifre;
+        const { email, sifre, isim, kullaniciAdi } = oturumC;
 
         try {
-            const sonuc = await fbH.uyeOl(kullaniciGiris, sifre);
+            const sonuc = await fbH.uyeOl(email, sifre);
             this.uid = sonuc.user.uid;
 
-            const veri = {
-                isim: oturumC.isim,
-                kullaniciGiris: oturumC.kullaniciGiris,
-                nick: oturumC.kullaniciGiris.split('@')[0],
-                sifre: oturumC.sifre,
-            };
+            const veri = { isim, email, kullaniciAdi, sifre };
             await fbH.guncelleKullaniciBilgi(this.uid, veri);
+            await fbH.eslestirKAUID(kullaniciAdi, this.uid);
 
             oturumC.uyelikKapat();
             return { sonuc: true };
@@ -35,16 +30,16 @@ class uyelikM {
 
 
     oturumAc = async () => {
-        const kullaniciGiris = oturumC.kullaniciGiris.indexOf('@') === -1 ? `${oturumC.kullaniciGiris}@todolist.com` : oturumC.kullaniciGiris;
+        const email = oturumC.email.indexOf('@') === -1 ? `${oturumC.email}@todolist.com` : oturumC.email;
         const sifre = oturumC.sifre;
 
         try {
-            const sonuc = await fbH.oturumAc(kullaniciGiris, sifre);
+            const sonuc = await fbH.oturumAc(email, sifre);
             this.uid = sonuc.user.uid;
 
             const kullaniciBilgiler = await fbH.getirKullaniciBilgi(this.uid);
             this.isim = kullaniciBilgiler.isim;
-            this.kullaniciGiris = kullaniciBilgiler.kullaniciGiris;
+            this.email = kullaniciBilgiler.email;
 
             return { sonuc: true };
         }

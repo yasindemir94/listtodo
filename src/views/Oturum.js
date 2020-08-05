@@ -35,12 +35,12 @@ class Oturum extends React.Component {
             <View style={S.K}>
                 <ScrollView>
                     <Input
-                        placeholder={'Kullanıcı adı veya E-Posta'}
+                        placeholder={'E-Posta'}
                         leftIcon={<Ikon is={'MaterialCommunityIcons'} i={'account'} c={'black'} />}
                         containerStyle={S.input}
-                        value={C.kullaniciGiris}
+                        value={C.email}
                         keyboardType={'email-address'}
-                        onChangeText={d => C.set('kullaniciGiris', d)}
+                        onChangeText={d => C.set('email', d)}
                         maxLength={60}
                     />
 
@@ -54,6 +54,19 @@ class Oturum extends React.Component {
                             containerStyle={S.input}
                             value={C.isim}
                             onChangeText={d => C.set('isim', d)}
+                            maxLength={50}
+                        />
+                    }
+                    {
+                        durum === 2 &&
+                        <Input
+                            placeholder={'Kullanıcı adı'}
+                            leftIcon={
+                                <Ikon is={'MaterialCommunityIcons'} i={'account'} c={'black'} />
+                            }
+                            containerStyle={S.input}
+                            value={C.kullaniciAdi}
+                            onChangeText={d => C.set('kullaniciAdi', d)}
                             maxLength={50}
                         />
                     }
