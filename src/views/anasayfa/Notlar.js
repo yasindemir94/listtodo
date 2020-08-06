@@ -12,6 +12,7 @@ import C from '../../controllers/anasayfa/notlarC';
 import { anasayfaNotS as S } from '../stil';
 
 import temaH from '../../helper/temaH';
+import notM from '../../models/notM';
 
 
 class Notlar extends React.Component {
@@ -25,10 +26,11 @@ class Notlar extends React.Component {
                 key={i}
                 animation={'bounceIn'}
                 delay={350}
-                style={[S.notK, { backgroundColor: temaH.notRenkleri[d.renk] }]}
+                style={[S.notK, { backgroundColor: temaH.notRenkleri[d.renk || 'r1'] }]}
             >
 
-                <Text>{d.aciklama}</Text>
+                <Text style={{ width: '100%' }}>{d.baslik}</Text>
+                <Text style={{ width: '100%' }}>{d.notIcerik}</Text>
 
                 {this.notButonlar(d, i)}
                 {this.notRenkSec(d, i)}
@@ -41,7 +43,7 @@ class Notlar extends React.Component {
         const butonlarAcik = C.notButonlarAcik === i;
 
         return (
-            <View style={[S.notButonlarK, { backgroundColor: temaH.notRenkleri[d.renk] }]}>
+            <View style={[S.notButonlarK, { backgroundColor: temaH.notRenkleri[d.renk || 'r1'] }]}>
                 <TouchableOpacity style={S.butonlarAcKapaButon} onPress={() => C.setNotButonlarAcik(i)}>
                     <Ikon
                         is={'AntDesign'} //ikonset
@@ -94,7 +96,7 @@ class Notlar extends React.Component {
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 >
-                    {nrDizi.map(x => d.renk === x ? null : <TouchableOpacity style={[S.notRenk, { backgroundColor: nr[x] }]} />)}
+                    {nrDizi.map((x, i) => d.renk === x ? null : <TouchableOpacity key={i} style={[S.notRenk, { backgroundColor: nr[x] }]} />)}
                 </ScrollView>
             </View>
         );
@@ -102,40 +104,15 @@ class Notlar extends React.Component {
 
 
     render() {
-        const notlar = [ //SUNUCUDAN GELECEK
-            {
-                aciklama: 'Irure dolore voluptate voluptate dolor amet anim aliquip fugiat est Lorem in aliqua dolor.',
-                renk: 'r3'
-            },
-            {
-                aciklama: 'Irure dolore voluptate voluptate dolor amet anim aliquip fugiat est Lorem in aliqua dolor.',
-                renk: 'r2'
-            },
-            {
-                aciklama: 'Irure dolore voluptate voluptate dolor amet anim aliquip fugiat est Lorem in aliqua dolor.',
-                renk: 'r8'
-            },
-            {
-                aciklama: 'Irure dolore voluptate voluptate dolor amet anim aliquip fugiat est Lorem in aliqua dolor.',
-                renk: 'r7'
-            },
-            {
-                aciklama: 'Irure dolore voluptate voluptate dolor amet anim aliquip fugiat est Lorem in aliqua dolor.',
-                renk: 'r5'
-            },
-            {
-                aciklama: 'Irure dolore voluptate voluptate dolor amet anim aliquip fugiat est Lorem in aliqua dolor.',
-                renk: 'r6'
-            },
-            {
-                aciklama: 'Irure dolore voluptate voluptate dolor amet anim aliquip fugiat est Lorem in aliqua dolor.',
-                renk: 'r4'
-            },
-            {
-                aciklama: 'Irure dolore voluptate voluptate dolor amet anim aliquip fugiat est Lorem in aliqua dolor.',
-                renk: 'r1'
-            },
-        ]
+        const notlar = notM.notlar;
+        console.log(notlar);
+
+        /*[ //SUNUCUDAN GELECEK
+        {
+            aciklama: 'Irure dolore voluptate voluptate dolor amet anim aliquip fugiat est Lorem in aliqua dolor.',
+            renk: 'r3'
+        }
+    ]*/
 
         return (
             <View style={S.notlarK}>

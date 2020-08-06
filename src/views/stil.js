@@ -135,6 +135,7 @@ export const anasayfaNotS = StyleSheet.create({
 		marginBottom: H(1.2),
 		padding: W(2),
 		paddingBottom: W(9),
+		width: W(100)
 	},
 
 

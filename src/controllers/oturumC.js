@@ -5,6 +5,7 @@ import uyelikM from '../models/uyelikM';
 import tlfnH from '../helper/tlfnH';
 import { splashS } from '../views/stil';
 import strgH from '../helper/strgH';
+import notM from '../models/notM';
 
 class oturumC {
     cDMount = async () => { }
@@ -59,6 +60,8 @@ class oturumC {
 
         if (sonuc.sonuc) {
             strgH.kaydetOturumBilgileri(this.email, this.sifre, 'acik');
+            await notM.getirNotlar();
+
             splashC.set('durum', 3);
         }
         else {

@@ -6,7 +6,6 @@ import splashC from '../controllers/splashC';
 
 class uyelikM {
     uid = '';
-
     isim = '';
     email = '';
 

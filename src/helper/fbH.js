@@ -1,7 +1,7 @@
 import { observable, action, decorate } from 'mobx';
 import auth_ from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
-import oturumC from '../controllers/oturumC';
+import sid from 'shortid';
 
 const auth = auth_();
 const db = database();
@@ -26,6 +26,21 @@ class fbH {
             .then(() => resolve(true))
             .catch(() => resolve(false));
     });
+    eslestirKullaniciNot = (uid, notid) => new Promise(resolve => {
+        db.ref(`/KULLANICI-NOT/${sid()}${sid()}`)
+            .set({ uid, notid })
+            .then(() => resolve(true))
+            .catch(() => resolve(false));
+    });
+
+
+    ekleNot = (notVeri, notid) => new Promise(resolve => {
+        db.ref(`/NOTLAR/${notid}`)
+            .set(notVeri)
+            .then(() => resolve(true))
+            .catch(() => resolve(false));
+    });
+
 
 
     guncelleKullaniciBilgi = (uid, veri) => new Promise(resolve => {
@@ -37,8 +52,23 @@ class fbH {
             .catch(() => resolve(false));
     });
 
+
     getirKullaniciBilgi = (uid) => new Promise(resolve => {
         db.ref(`/KULLANICILAR/${uid}`)
+            .once('value')
+            .then(data => resolve(data.val()))
+            .catch(() => resolve(false));
+    });
+    getirKullaniciNotid = (uid) => new Promise(resolve => {
+        db.ref(`/KULLANICI-NOT/`)
+            .orderByChild('uid')
+            .equalTo(uid)
+            .once('value')
+            .then(data => resolve(data.val()))
+            .catch(() => resolve(false));
+    });
+    getirNot = (notid) => new Promise(resolve => {
+        db.ref(`/NOTLAR/${notid}`)
             .once('value')
             .then(data => resolve(data.val()))
             .catch(() => resolve(false));
@@ -52,9 +82,20 @@ decorate(
 
         oturumAc: action,
 
+
         eslestirKAUID: action,
+        eslestirKullaniciNot: action,
+
+
+        ekleNot: action,
+
+
         guncelleKullaniciBilgi: action,
+
+
         getirKullaniciBilgi: action,
+        getirKullaniciNotid: action,
+        getirNot: action,
     }
 );
 
