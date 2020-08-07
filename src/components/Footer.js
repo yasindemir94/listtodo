@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 
-import anasayfaC from '../controllers/anasayfa/anasayfaC';
+import anasayfaC from '../controllers/anasayfa/AnasayfaC';
 
 import { footerS as S } from '../views/stil';
 

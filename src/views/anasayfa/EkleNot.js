@@ -3,7 +3,7 @@ import { View, TouchableOpacity, TextInput, Text } from 'react-native';
 import { observer } from 'mobx-react';
 import Modal from 'react-native-modal';
 
-import C from '../../controllers/anasayfa/anasayfaC';
+import C from '../../controllers/anasayfa/AnasayfaC';
 import tlfnH from '../../helper/tlfnH';
 
 import { anasayfaS as S } from '../stil';
