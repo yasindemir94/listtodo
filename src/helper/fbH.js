@@ -1,10 +1,12 @@
 import { observable, action, decorate } from 'mobx';
 import auth_ from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
+import storage from '@react-native-firebase/storage';
 import sid from 'shortid';
 
 const auth = auth_();
 const db = database();
+const strg = storage();
 
 class fbH {
     uyeOl = (ka, sifre) => new Promise((resolve, reject) => {
@@ -73,6 +75,32 @@ class fbH {
             .then(data => resolve(data.val()))
             .catch(() => resolve(false));
     });
+
+
+
+
+    getirDosyaURL = async ref => await strg.ref(ref).getDownloadURL();
+
+    yukleDosya = (ref, path) => new Promise(resolve => {
+        console.log('<--- DOSYA UPLOAD ---');
+        console.log({ ref, path });
+
+        const task = strg.ref(ref).putFile(path);
+
+        task.on('state_changed', d => console.log(d));
+
+        task.then(async d => {
+            console.log(d);
+            resolve(await strg.ref(ref).getDownloadURL());
+        })
+            .catch(hata => {
+                resolve(false);
+                console.log(hata);
+            });
+
+
+        console.log('--- DOSYA UPLOAD --->');
+    });
 }
 
 decorate(
@@ -96,6 +124,9 @@ decorate(
         getirKullaniciBilgi: action,
         getirKullaniciNotid: action,
         getirNot: action,
+
+        getirDosyaURL: action,
+        yukleDosya: action
     }
 );
 

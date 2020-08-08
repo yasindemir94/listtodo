@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 import Arkaplan from '../../components/Arkaplan';
 import Footer from '../../components/Footer';
 
-import C from '../../controllers/anasayfa/AnasayfaC';
+import C from '../../controllers/anasayfa/anasayfaC';
 import splashC from '../../controllers/splashC';
 
 import { anasayfaS as S } from '../stil';

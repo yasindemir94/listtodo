@@ -1,39 +1,41 @@
 import React from 'react';
-import { View, TouchableOpacity, TextInput, Text } from 'react-native';
+import { View, TouchableOpacity, TextInput, Text, ScrollView } from 'react-native';
 import { observer } from 'mobx-react';
 import Modal from 'react-native-modal';
 
-import C from '../../controllers/anasayfa/AnasayfaC';
+import C from '../../controllers/anasayfa/ekleNotC';
 import tlfnH from '../../helper/tlfnH';
 
 import { anasayfaS as S } from '../stil';
+
 import Ikon from '../../components/Ikon';
+import Resim from '../../components/Resim';
 import temaH from '../../helper/temaH';
 
 
 class EkleNot extends React.Component {
-    componentDidMount = C.cDMount;
-    componentDidUpdate = C.cDUpdate;
-    componentWillUnmount = C.cWUnmount;
-
-
     render() {
         console.count('EkleNot');
 
         return (
-            <Modal backdropOpacity={0.5} isVisible={C.notekleModal}>
+            <Modal
+                backdropOpacity={0.5}
+                isVisible={C.notekleModal}
+                onBackdropPress={C.notEkleModalKapat}
+            >
                 <View style={[
                     S.notEkleModalK,
                     {
-                        flex: tlfnH.klavye.durum ? 1 : undefined,
+                        //flex: tlfnH.klavye.durum ? 1 : undefined,
                         //backgroundColor: tlfnH.klavye.durum ? temaH.renkler.r1 : 'white',
-                        margin: tlfnH.klavye.durum ? -22 : null,
-                        marginBottom: tlfnH.ios ? tlfnH.klavye.h - tlfnH.sbhi() : undefined,
-                        borderRadius: tlfnH.klavye.durum ? 0 : 10,
-                    }]}
+                        //margin: tlfnH.klavye.durum ? -22 : null,
+                        //marginBottom: tlfnH.ios ? tlfnH.klavye.h - tlfnH.sbhi() : undefined,
+                        //borderRadius: tlfnH.klavye.durum ? 0 : 10,
+                    }
+                ]}
                 >
 
-                    <TouchableOpacity style={S.notEkleModalKapatB} onPress={() => C.set('notekleModal', false)}>
+                    <TouchableOpacity style={S.notEkleModalKapatB} onPress={C.notEkleModalKapat}>
                         <Ikon is={'MaterialCommunityIcons'} i={'close'} c={temaH.renkler.r2} s={24} />
                     </TouchableOpacity>
 
@@ -64,11 +66,26 @@ class EkleNot extends React.Component {
                                 <Ikon is={'MaterialCommunityIcons'} i={'share-variant'} c={temaH.renkler.r2} s={24} />
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={S.buton}>
+                            <TouchableOpacity style={S.buton} onPress={() => C.ImagePicker()}>
                                 <Ikon is={'MaterialCommunityIcons'} i={'camera-plus'} c={temaH.renkler.r2} s={24} />
                             </TouchableOpacity>
                         </View>
                     </View>
+
+                    <ScrollView horizontal style={{ marginHorizontal: '5%' }} showsHorizontalScrollIndicator={false}>
+                        <View style={{ flexDirection: 'row' }}>
+                            {
+                                C.resimler.map((d, i) => (
+                                    <Resim
+                                        key={i}
+                                        source={{ uri: d }}
+                                        height={tlfnH.H(10)}
+                                        style={{ margin: 5, borderRadius: 5 }}
+                                    />
+                                ))
+                            }
+                        </View>
+                    </ScrollView>
 
 
                     <TouchableOpacity style={S.olusturB} onPress={C.olustur}>

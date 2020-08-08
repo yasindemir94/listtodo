@@ -1,6 +1,8 @@
 import { observable, action, decorate } from 'mobx';
 import { LayoutAnimation } from 'react-native';
 
+import fbH from '../../helper/fbH';
+
 class notlarC {
     cDMount = () => { }
     cDUpdate = () => { LayoutAnimation.easeInEaseOut(); }
@@ -12,7 +14,6 @@ class notlarC {
     setNotButonlarAcik = i => {
         this.notButonlarAcik = this.notButonlarAcik === i ? -1 : i;
     }
-
 
     set = (k, v) => this[k] = v;
 }
@@ -26,6 +27,7 @@ decorate(
 
         notButonlarAcik: observable,
         setNotButonlarAcik: action,
+
 
 
         set: action,
