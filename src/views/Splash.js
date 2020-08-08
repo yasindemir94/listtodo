@@ -13,7 +13,6 @@ import splashC from '../controllers/splashC';
 
 
 import { splashS as S } from './stil';
-import oturumC from '../controllers/oturumC';
 
 
 class Splash extends React.Component {
